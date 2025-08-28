@@ -1,0 +1,55 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-docker-compose
+{
+	"name": "App",
+
+	"dockerComposeFile": [
+		"../../compose.yaml",
+		"../../compose.dev.yaml"
+	],
+
+	"service": "php",
+
+	"workspaceFolder": "/app", // "/app/code"
+
+	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
+	// "shutdownAction": "none",
+
+	// Uncomment the next line to run commands after the container is created.
+	// "postCreateCommand": "cat /etc/os-release",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+				"php.validate.executablePath": "/usr/local/bin/php"
+            },
+			"extensions": [
+				"mhutchie.git-graph",
+
+				"oderwat.indent-rainbow",
+                "editorconfig.editorconfig",
+
+				"xdebug.php-debug",
+				"bmewburn.vscode-intelephense-client",
+
+				// "laravel.vscode-laravel",
+				// "onecentlin.laravel-blade",
+				// "amiralizadeh9480.laravel-extra-intellisense",
+				// "mehedidracula.php-namespace-resolver",
+				// "codingyu.laravel-goto-view",
+				// "onecentlin.laravel5-snippets",
+                // "amirmarmul.laravel-blade-vscode",
+                // "onecentlin.laravel-blade",
+                // "shufo.vscode-blade-formatter",
+
+                "mehedidracula.php-namespace-resolver",
+                "thenouillet.symfony-vscode",
+                "mblode.twig-language-2",
+
+				"davidanson.vscode-markdownlint"
+			]
+		}
+	}
+}
