@@ -1,0 +1,27 @@
+services:
+  php:
+    ports:
+      - target: 443
+        published: ${HTTPS_PORT:-443}
+        protocol: tcp
+    environment:
+      SERVER_NAME: ${SERVER_NAME:-localhost}
+      SERVER_ROOT: code/public/
+    volumes:
+      - ./:/app # only /app in Symfony/Laravel project
+      - ~/.composer:/usr/local/share/composer # share composer cache + auth.json
+      - caddy-data:/data
+      - caddy-config:/config
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    tty: true
+
+  db:
+    ports: # enable access from host
+      - target: 5432
+        published: ${DB_PORT:-5432}
+        protocol: tcp
+
+volumes:
+  caddy-data:
+  caddy-config:

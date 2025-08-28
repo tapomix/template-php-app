@@ -1,0 +1,36 @@
+# @see .env for configuration
+services:
+  php:
+    container_name: ${CONTAINER_NAME:-app}-php
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile
+      target: fkphp_${BUILD_TARGET:-dev}
+    user: ${UID:-1000}:${GID:-1000}
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+      DATABASE_URL: "postgresql://${DB_USER:-pg}:${DB_PASS:-dev}@db:5432/${DB_NAME:-app}?serverVersion=${DB_VERSION:-17}&charset=${DB_CHARSET:-utf8}"
+    networks:
+      - app-net
+      - puppeteer-net
+
+  db:
+    image: library/postgres:${DB_VERSION:-17}-alpine
+    container_name: ${CONTAINER_NAME:-app}-db
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+      PGTZ: ${TZ:-Etc/UTC}
+      POSTGRES_DB: "${DB_NAME:-app}"
+      POSTGRES_USER: "${DB_USER:-pg}"
+      POSTGRES_PASSWORD: "${DB_PASS:-changeMe!}"
+    volumes:
+      - .docker/db/data:/var/lib/postgresql/data:rw
+      - .docker/db/sql:/sql:rw # need to be writable to store backup
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    name: ${CONTAINER_NAME:-app}-net
+  puppeteer-net:
+    external: true
