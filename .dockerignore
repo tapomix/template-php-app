@@ -1,0 +1,45 @@
+# unique ignore file at root context
+
+# misc
+**/*.cache
+**/*.dist
+**/*.dist.*
+**/*.log
+**/*.md
+
+# docker
+.docker/
+!.docker/php/
+
+# dev
+.castor/
+.devcontainer/
+
+# ide
+.editorconfig
+.idea/
+.vscode/
+
+# git
+.git/
+.gitattributes
+.gitignore
+.gitsubmodules
+
+# code
+## envs
+code/.env.local
+code/.env.*.local
+code/.env.local.php
+
+## qa
+code/.php-cs-fixer.php
+code/phpstan.neon
+code/rector.php
+
+code/assets/vendor/
+code/public/bundles/
+# code/node_modules/
+code/tests/
+code/var/
+code/vendor/

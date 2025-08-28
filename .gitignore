@@ -1,0 +1,28 @@
+# ide
+/.idea
+/.vscode
+
+# castor
+.castor.stub.php
+
+# caddy volumes
+/.docker/caddy/data/*
+!/.docker/caddy/data/.gitkeep
+/.docker/caddy/config/*
+!/.docker/caddy/config/.gitkeep
+
+# db volumes
+/.docker/db/data/*
+/.docker/db/sql/*
+!/.docker/db/sql/.gitkeep
+
+# composer auth (optional)
+/.docker/.composer-auth.json
+
+# env vars
+.env
+
+# misc
+*.patch
+*.drawio
+/TODO.md
