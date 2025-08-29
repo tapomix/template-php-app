@@ -9,7 +9,7 @@ use function Castor\load_dot_env;
 #[AsContext(default: true)]
 function default_context(): Context
 {
-    return (new Context(load_dot_env(__DIR__ . '/../.env')))->withAllowFailure();
+    return (new Context(load_dot_env(__DIR__ . '/../' . ENV_FILE)))->withAllowFailure();
 }
 
 #[AsContext(name: 'interactive')]

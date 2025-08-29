@@ -56,7 +56,7 @@ function shell(string $service): void
 function buildBaseDockerComposeCmd(): array
 {
     $envCompose = 'compose.'.$_SERVER['APP_ENV'].'.yaml';
-    $dockerEnv = '.env'; // '.env.docker.local'
+    $dockerEnv = ENV_FILE;
 
     if (!fs()->exists($envCompose)) {
         throw new ProblemException('Specific Docker Compose not found');
