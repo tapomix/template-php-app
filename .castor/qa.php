@@ -52,8 +52,6 @@ function phpstan(): ?Process
         return null;
     }
 
-    return null;
-
     io()->title('Running PHPStan');
 
     return \docker\exec(SERVICE_PHP, [$binary, 'analyse', '--memory-limit', '256M']);
