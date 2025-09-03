@@ -2,8 +2,8 @@
 
 namespace composer;
 
-use Castor\Attribute\AsTask;
 use Castor\Attribute\AsRawTokens;
+use Castor\Attribute\AsTask;
 
 use function Castor\context;
 
@@ -13,7 +13,7 @@ function exec(
     #[AsRawTokens]
     array $args = [],
 ): void {
-    \docker\exec(\SERVICE_PHP, \array_merge(['composer'], $args), context('interactive'));
+    \docker\exec(SERVICE_PHP, \array_merge(['composer'], $args), context('interactive'));
 }
 
 /** @param string[] $args */
