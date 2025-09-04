@@ -9,7 +9,6 @@ use Symfony\Component\Process\Process;
 
 use function Castor\fs;
 use function Castor\io;
-
 use function qa\buildLocalPath;
 
 #[AsTask(description: 'Run PHP-CS-Fixer', aliases: ['php-cs', 'cs'])]
@@ -30,7 +29,7 @@ function analyze(
         $cmd = \array_merge($cmd, ['--dry-run', '-vv', '--diff', '--show-progress=dots']);
     }
 
-    io()->title('Running PHP-CS-Fixer'.($fix ? '' : ' (**dry-run**)'));
+    io()->title('Running PHP-CS-Fixer' . ($fix ? '' : ' (**dry-run**)'));
 
     return \docker\exec(SERVICE_PHP, $cmd);
 }

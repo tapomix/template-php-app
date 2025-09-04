@@ -9,7 +9,7 @@ use function Castor\io;
 #[AsTask(description: 'Generate a random token', aliases: ['token'])]
 function generator(int $length = 32): void
 {
-    $token = bin2hex(random_bytes($length));
+    $token = bin2hex(random_bytes(max(1, $length)));
 
-    io()->text("Copy+Paste your new token : $token");
+    io()->text('Copy+Paste your new token : ' . $token);
 }

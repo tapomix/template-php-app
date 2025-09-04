@@ -9,7 +9,6 @@ use Symfony\Component\Process\Process;
 
 use function Castor\fs;
 use function Castor\io;
-
 use function qa\buildLocalPath;
 
 #[AsTask(description: 'Run Twig-CS-Fixer', aliases: ['twig-cs'])]
@@ -30,7 +29,7 @@ function analyze(
         $cmd[] = '--fix';
     }
 
-    io()->title('Running Twig-CS-Fixer'.($fix ? '' : ' (**dry-run**)'));
+    io()->title('Running Twig-CS-Fixer' . ($fix ? '' : ' (**dry-run**)'));
 
     return \docker\exec(SERVICE_PHP, $cmd);
 }

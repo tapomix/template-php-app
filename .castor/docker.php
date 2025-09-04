@@ -55,7 +55,7 @@ function shell(string $service): void
 /** @return string[] */
 function buildBaseDockerComposeCmd(): array
 {
-    $envCompose = 'compose.'.$_SERVER['APP_ENV'].'.yaml';
+    $envCompose = 'compose.' . $_SERVER['APP_ENV'] . '.yaml';
     $dockerEnv = ENV_FILE;
 
     if (!fs()->exists($envCompose)) {
@@ -75,7 +75,7 @@ function buildBaseDockerComposeCmd(): array
         fs()->dumpFile($composerAuthFile, '{}');
     }
 
-    $cmd = [
+    return [
         'docker',
         'compose',
 
@@ -84,10 +84,8 @@ function buildBaseDockerComposeCmd(): array
         '-f',
         $envCompose,
 
-        '--env-file='.$dockerEnv,
+        '--env-file=' . $dockerEnv,
     ];
-
-    return $cmd;
 }
 
 /** @param string[] $command */

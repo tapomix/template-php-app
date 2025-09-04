@@ -7,7 +7,6 @@ use Symfony\Component\Process\Process;
 
 use function Castor\fs;
 use function Castor\io;
-
 use function qa\buildLocalPath;
 
 #[AsTask(description: 'Lint Twig templates', aliases: ['lint'])]

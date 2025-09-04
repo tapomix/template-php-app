@@ -9,7 +9,6 @@ use Symfony\Component\Process\Process;
 
 use function Castor\fs;
 use function Castor\io;
-
 use function qa\buildLocalPath;
 
 #[AsTask(description: 'Run Rector', aliases: ['rector'])]
@@ -30,7 +29,7 @@ function analyze(
         $cmd = \array_merge($cmd, ['--dry-run', '--debug']);
     }
 
-    io()->title('Running Rector'.($fix ? '' : ' (**dry-run**)'));
+    io()->title('Running Rector' . ($fix ? '' : ' (**dry-run**)'));
 
     return \docker\exec(SERVICE_PHP, $cmd);
 }
