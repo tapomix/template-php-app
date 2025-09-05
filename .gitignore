@@ -21,6 +21,7 @@
 
 # env vars
 .env
+/.env.prod.local
 
 # misc
 *.patch
