@@ -19,7 +19,7 @@ function build(): void
 {
     io()->title('Building server');
 
-    castor_run(\array_merge(buildBaseDockerComposeCmd(), ['up', '--detach', '--build', '--wait']), context: context()->withVerbosityLevel(VerbosityLevel::VERBOSE));
+    castor_run(\array_merge(buildBaseDockerComposeCmd(), ['build', '--no-cache']), context: context()->withVerbosityLevel(VerbosityLevel::VERBOSE));
 }
 
 #[AsTask(description: 'Start server (aka compose up)', aliases: ['start', 'up'])]
