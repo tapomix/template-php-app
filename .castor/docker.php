@@ -56,13 +56,12 @@ function shell(string $service): void
 function buildBaseDockerComposeCmd(): array
 {
     $envCompose = 'compose.' . $_SERVER['APP_ENV'] . '.yaml';
-    $dockerEnv = ENV_FILE;
 
     if (!fs()->exists($envCompose)) {
         throw new ProblemException('Specific Docker Compose not found');
     }
 
-    if (!fs()->exists($dockerEnv)) {
+    if (!fs()->exists(DOCKER_ENV)) {
         throw new ProblemException('Docker Compose config not found');
     }
 
@@ -84,7 +83,7 @@ function buildBaseDockerComposeCmd(): array
         '-f',
         $envCompose,
 
-        '--env-file=' . $dockerEnv,
+        '--env-file=' . DOCKER_ENV,
     ];
 }
 
