@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: .docker/php/Dockerfile
-      target: fkphp_${BUILD_TARGET:-dev}
+      target: fkphp_${APP_ENV:-dev}
     user: ${UID:-1000}:${GID:-1000}
     environment:
       TZ: ${TZ:-Etc/UTC}
