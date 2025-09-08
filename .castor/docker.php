@@ -92,15 +92,7 @@ function run(string $service, array $command, ?Context $context = null): Process
 {
     $context ??= context();
 
-    $runCmd = ['run', '--rm'];
-    if (SERVICE_PHP === $service) {
-        $runCmd = \array_merge($runCmd, [
-            '-w',
-            '/app/' . CODE_PATH,
-        ]);
-    }
-
-    return castor_run(\array_merge(buildBaseDockerComposeCmd(), $runCmd, [$service], $command), context: $context);
+    return castor_run(\array_merge(buildBaseDockerComposeCmd(), ['run', '--rm'], [$service], $command), context: $context);
 }
 
 /** @param string[] $command */
@@ -108,13 +100,5 @@ function exec(string $service, array $command, ?Context $context = null): Proces
 {
     $context ??= context();
 
-    $runCmd = ['exec'];
-    if (SERVICE_PHP === $service) {
-        $runCmd = \array_merge($runCmd, [
-            '-w',
-            '/app/' . CODE_PATH,
-        ]);
-    }
-
-    return castor_run(\array_merge(buildBaseDockerComposeCmd(), $runCmd, [$service], $command), context: $context);
+    return castor_run(\array_merge(buildBaseDockerComposeCmd(), ['exec'], [$service], $command), context: $context);
 }

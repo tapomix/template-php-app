@@ -54,6 +54,8 @@ COPY .docker/php/app-dev.ini $PHP_INI_DIR/conf.d/20-app-dev.ini
 
 USER ${USER}
 
+WORKDIR /app/code
+
 ### BUILD ###
 FROM fkphp_base AS build
 
