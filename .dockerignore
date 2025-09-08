@@ -30,6 +30,7 @@
 ## envs
 code/.env.local
 code/.env.*.local
+!code/.env.prod.local
 code/.env.local.php
 
 ## qa

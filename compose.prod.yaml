@@ -4,8 +4,6 @@ services:
       secrets:
         - composer-auth
     restart: unless-stopped
-    env_file:
-      - .env.prod.local # required
     environment:
       SERVER_NAME: :80 # disable https for traefik > container
     volumes:
