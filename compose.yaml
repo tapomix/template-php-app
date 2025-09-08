@@ -6,6 +6,9 @@ services:
       context: .
       dockerfile: .docker/php/Dockerfile
       target: fkphp_${APP_ENV:-dev}
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
     user: ${UID:-1000}:${GID:-1000}
     environment:
       TZ: ${TZ:-Etc/UTC}
