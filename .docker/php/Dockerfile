@@ -67,9 +67,7 @@ RUN --mount=type=secret,id=composer-auth,env=COMPOSER_AUTH composer install --no
 
 COPY --link code .
 
-RUN composer dump-autoload --classmap-authoritative --no-dev; \
-    composer dump-env prod; \
-    composer run-script --no-dev post-install-cmd;
+RUN composer run-script --no-dev deploy;
 
 ### PROD ###
 FROM fkphp_base AS fkphp_prod
