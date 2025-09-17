@@ -16,7 +16,7 @@ function database(): void
 {
     io()->title('Connecting into PosgreSQL database');
 
-    \docker\exec(SERVICE_DB, ['psql', '-U', $_SERVER['DB_USER'] ?? 'pg', $_SERVER['DB_NAME'] ?? 'app'], context: context()->toInteractive());
+    \docker\exec(SERVICE_DB, ['psql', '-U', $_SERVER['DB_USER'] ?? DEFAULT_DB_USER, $_SERVER['DB_NAME'] ?? DEFAULT_DB_NAME], context: context()->toInteractive());
 }
 
 #[AsTask(description: 'Backup database')]
@@ -24,7 +24,7 @@ function backup(string $timing): void
 {
     io()->title('Create DB backup');
 
-    \docker\exec(SERVICE_DB, ['pg_dump', '-O', '-U', $_SERVER['DB_USER'] ?? 'pg', '-f', \db\buildDumpFileName($timing), $_SERVER['DB_NAME'] ?? 'app']);
+    \docker\exec(SERVICE_DB, ['pg_dump', '-O', '-U', $_SERVER['DB_USER'] ?? DEFAULT_DB_USER, '-f', \db\buildDumpFileName($timing), $_SERVER['DB_NAME'] ?? DEFAULT_DB_NAME]);
 }
 
 function buildDumpFileName(string $timing, bool $local = false): string
