@@ -27,8 +27,7 @@
 /compose.override.yaml
 
 # env vars
-.env
-/.env.prod.local
+/.env
 
 # misc
 *.patch
