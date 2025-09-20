@@ -26,6 +26,9 @@
 .gitignore
 .gitsubmodules
 
+# storage
+.storage/
+
 # code
 ## envs
 code/.env.local

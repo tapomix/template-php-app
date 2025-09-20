@@ -16,6 +16,10 @@
 /.docker/db/sql/*
 !/.docker/db/sql/.gitkeep
 
+# storage
+/.storage/*
+!/.storage/.gitkeep
+
 # composer auth (optional)
 /.docker/.composer-auth.json
 

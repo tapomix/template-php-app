@@ -9,6 +9,7 @@ services:
     volumes:
       - .docker/caddy/data:/data
       - .docker/caddy/config:/config
+      - .storage:/storage
     networks: # need to (re)write all (no merge for networks)
       - app-net
       - puppeteer-net
