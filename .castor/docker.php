@@ -74,17 +74,28 @@ function buildBaseDockerComposeCmd(): array
         fs()->dumpFile($composerAuthFile, '{}');
     }
 
-    return [
+    $composes = [
+        'compose.yaml', // base file
+        $envCompose, // env specific file
+    ];
+
+    if (fs()->exists('compose.override.yaml')) {
+        $composes[] = 'compose.override.yaml'; // custom file
+    }
+
+    $cmd = [
         'docker',
         'compose',
-
-        '-f',
-        'compose.yaml',
-        '-f',
-        $envCompose,
-
-        '--env-file=' . DOCKER_ENV,
     ];
+
+    foreach ($composes as $compose) {
+        $cmd[] = '-f';
+        $cmd[] = $compose;
+    }
+
+    $cmd[] = '--env-file=' . DOCKER_ENV;
+
+    return $cmd;
 }
 
 /** @param string[] $command */

@@ -23,6 +23,9 @@
 # composer auth (optional)
 /.docker/.composer-auth.json
 
+# custom docker compose
+/compose.override.yaml
+
 # env vars
 .env
 /.env.prod.local
