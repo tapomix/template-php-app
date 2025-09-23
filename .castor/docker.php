@@ -14,12 +14,12 @@ use function Castor\fs;
 use function Castor\io;
 use function Castor\run as castor_run;
 
-#[AsTask(description: 'Build server (aka compose up --build)', aliases: ['build'])]
-function build(): void
+#[AsTask(description: 'Build all services', aliases: ['build'])]
+function build(bool $noCache = false): void
 {
     io()->title('Building server');
 
-    castor_run(\array_merge(buildBaseDockerComposeCmd(), ['build', '--no-cache']), context: context()->withVerbosityLevel(VerbosityLevel::VERBOSE));
+    castor_run(\array_merge(buildBaseDockerComposeCmd(), \array_merge(['build'], $noCache ? ['--no-cache'] : [])), context: context()->withVerbosityLevel(VerbosityLevel::VERBOSE));
 }
 
 #[AsTask(description: 'Start server (aka compose up)', aliases: ['start', 'up'])]
