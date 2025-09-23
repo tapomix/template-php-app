@@ -12,10 +12,10 @@ define('TEMPLATE_REMOTE_NAME', 'template');
 define('TEMPLATE_URL_GITHUB', 'https://github.com/tapomix/template-php-site');
 
 #[AsTask(description: 'Add remote for the template', aliases: ['template:add'])]
-function add(string $remote = TEMPLATE_REMOTE_NAME, string $url = TEMPLATE_URL_GITHUB): void
+function add(string $remote = TEMPLATE_REMOTE_NAME): void
 {
     if (null === findRemoteTemplateName()) {
-        run(\sprintf('git remote add %s %s', $remote, $url));
+        run(\sprintf('git remote add %s %s', $remote, TEMPLATE_URL_GITHUB));
         run('git remote set-url --push ' . $remote . ' NO_PUSH'); // set a fake url to disable push on remote
         io()->success('Remote added');
     } else {
@@ -37,10 +37,18 @@ function diff(): void
 
 function execDiff(bool $withStat): void
 {
+    $remote = findRemoteTemplateName();
+
+    if (null === $remote) {
+        io()->warning('Template remote is missing, add it with: castor git:template:add');
+
+        return;
+    }
+
     $cmd = \array_merge(
         ['git', 'diff'],
         $withStat ? ['--stat'] : [],
-        ['template/main', '--', '.'],
+        [$remote . '/main', '--', '.'],
     );
 
     // ignore these files that always contain differences
@@ -54,21 +62,15 @@ function execDiff(bool $withStat): void
         $cmd[] = ':(exclude)' . $path;
     }
 
-    $remote = findRemoteTemplateName();
-
-    if (null !== $remote) {
-        // first update template ...
-        run('git fetch ' . $remote);
-        // ... then compare
-        run($cmd);
-    } else {
-        io()->warning('Template remote is missing, add it with: castor git:template:add');
-    }
+    // first update template ...
+    run('git fetch ' . $remote);
+    // ... then compare
+    run($cmd);
 }
 
-function findRemoteTemplateName(string $url = TEMPLATE_URL_GITHUB): ?string
+function findRemoteTemplateName(): ?string
 {
-    $remote = \trim(capture(\sprintf("git remote -v | grep '%s' | awk '{print \$1}' | uniq", $url)));
+    $remote = \trim(capture(\sprintf("git remote -v | grep '%s' | awk '{print \$1}' | uniq", TEMPLATE_URL_GITHUB)));
 
     return \strlen($remote) > 0 ? $remote : null;
 }
