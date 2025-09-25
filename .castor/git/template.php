@@ -46,7 +46,7 @@ function execDiff(bool $withStat): void
     }
 
     $cmd = \array_merge(
-        ['git', 'diff'],
+        ['git', 'diff', 'HEAD'],
         $withStat ? ['--stat'] : [],
         [$remote . '/main', '--', '.'],
     );
