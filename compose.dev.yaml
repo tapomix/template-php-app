@@ -6,7 +6,7 @@ services:
         protocol: tcp
     environment:
       SERVER_NAME: ${SERVER_NAME}
-      XDEBUG_CONFIG: "idekey=${XDEBUG_IDEKEY:-docker} client_port=${XDEBUG_PORT:-9003}" # overwrite php.ini values
+      XDEBUG_CONFIG: "idekey=${XDEBUG_IDEKEY:-VSCODE} client_port=${XDEBUG_PORT:-9003}" # overwrite php.ini values
     volumes:
       - ./:/app # only /app in Symfony/Laravel project
       - ~/.composer:/usr/local/share/composer # share composer cache + auth.json

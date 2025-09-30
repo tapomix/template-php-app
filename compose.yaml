@@ -12,11 +12,11 @@ services:
     user: ${UID:-1000}:${GID:-1000}
     environment:
       TZ: ${TZ:-Etc/UTC}
-      DATABASE_URL: "postgresql://${DB_USER:-pg}:${DB_PASS:-changeMe!}@db:5432/${DB_NAME:-app}?serverVersion=${DB_VERSION:-17}&charset=${DB_CHARSET:-utf8}"
+      DATABASE_URL: "postgresql://${DB_USER:-pg}:${DB_PASS:-ChangeMe!}@db:5432/${DB_NAME:-app}?serverVersion=${DB_VERSION:-17}&charset=${DB_CHARSET:-utf8}"
     networks:
       - app-net
       - puppeteer-net
-
+DB
   db:
     image: library/postgres:${DB_VERSION:-17}-alpine
     container_name: ${CONTAINER_NAME}-db
@@ -25,7 +25,7 @@ services:
       PGTZ: ${TZ:-Etc/UTC}
       POSTGRES_DB: "${DB_NAME:-app}"
       POSTGRES_USER: "${DB_USER:-pg}"
-      POSTGRES_PASSWORD: "${DB_PASS:-changeMe!}"
+      POSTGRES_PASSWORD: "${DB_PASS:-ChangeMe!}"
     volumes:
       - .docker/db/data:/var/lib/postgresql/data:rw
       - .docker/db/sql:/sql:rw # need to be writable to store backup
