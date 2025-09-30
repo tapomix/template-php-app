@@ -10,8 +10,6 @@ services:
     volumes:
       - ./:/app # only /app in Symfony/Laravel project
       - ~/.composer:/usr/local/share/composer # share composer cache + auth.json
-      - caddy-data:/data
-      - caddy-config:/config
     extra_hosts:
       - host.docker.internal:host-gateway
     tty: true

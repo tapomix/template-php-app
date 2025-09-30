@@ -7,8 +7,6 @@ services:
     environment:
       SERVER_NAME: :80 # disable https for traefik > container
     volumes:
-      - .docker/caddy/data:/data
-      - .docker/caddy/config:/config
       - .storage:/storage
     networks: # need to (re)write all (no merge for networks)
       - app-net
