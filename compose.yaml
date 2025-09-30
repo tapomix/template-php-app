@@ -1,11 +1,11 @@
 # @see .env for configuration
 services:
   php:
-    container_name: ${CONTAINER_NAME:-app}-php
+    container_name: ${CONTAINER_NAME}-php
     build:
       context: .
       dockerfile: .docker/php/Dockerfile
-      target: fkphp_${APP_ENV:-dev}
+      target: fkphp_${APP_ENV}
       args:
         UID: ${UID:-1000}
         GID: ${GID:-1000}
@@ -19,7 +19,7 @@ services:
 
   db:
     image: library/postgres:${DB_VERSION:-17}-alpine
-    container_name: ${CONTAINER_NAME:-app}-db
+    container_name: ${CONTAINER_NAME}-db
     environment:
       TZ: ${TZ:-Etc/UTC}
       PGTZ: ${TZ:-Etc/UTC}
@@ -34,6 +34,6 @@ services:
 
 networks:
   app-net:
-    name: ${CONTAINER_NAME:-app}-net
+    name: ${CONTAINER_NAME}-net
   puppeteer-net:
     external: true
