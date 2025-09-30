@@ -19,7 +19,3 @@ services:
       - target: 5432
         published: ${DB_PORT:-5432}
         protocol: tcp
-
-volumes:
-  caddy-data:
-  caddy-config:
