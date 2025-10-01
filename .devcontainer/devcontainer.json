@@ -4,8 +4,8 @@
 	"name": "App",
 
 	"dockerComposeFile": [
-		"../../compose.yaml",
-		"../../compose.dev.yaml"
+		"../compose.yaml",
+		"../compose.dev.yaml"
 	],
 
 	"service": "php",
