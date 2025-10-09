@@ -1,8 +1,10 @@
 # Multi stages Dockerfile
 
+ARG PHP_VERSION=8.3
+
 ### BASE ###
 
-FROM dunglas/frankenphp:php8.3.23 AS fkphp_base
+FROM dunglas/frankenphp:php${PHP_VERSION} AS fkphp_base
 
 ARG USER=app
 ARG UID=1000
