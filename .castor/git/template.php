@@ -72,5 +72,5 @@ function findRemoteTemplateName(): ?string
 {
     $remote = \trim(capture(\sprintf("git remote -v | grep '%s' | awk '{print \$1}' | uniq", TEMPLATE_URL_GITHUB)));
 
-    return \strlen($remote) > 0 ? $remote : null;
+    return '' !== $remote ? $remote : null;
 }
