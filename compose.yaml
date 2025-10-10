@@ -13,7 +13,6 @@ services:
     user: ${UID:-1000}:${GID:-1000}
     environment:
       TZ: ${TZ:-Etc/UTC}
-      DATABASE_URL: "postgresql://${DB_USER:-pg}:${DB_PASS:-ChangeMe!}@db:5432/${DB_NAME:-app}?serverVersion=${DB_VERSION:-17}&charset=${DB_CHARSET:-utf8}"
     networks:
       - app-net
       - puppeteer-net
